@@ -16,7 +16,7 @@
 	},
 	"devDependencies": {
 		"xml2js": "^0.4.19"
-	}
+	},
 	"scripts":{
 		"start": "node bot.js"
 	}
