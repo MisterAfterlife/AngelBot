@@ -1,0 +1,8 @@
+{
+	"name": "secret-app",
+	"version": "1.0.0",
+	"description": "My first test bot",
+	"main": "bot.js",
+	"author": "MisterAfterlife",
+	"dependencies": {}
+}
