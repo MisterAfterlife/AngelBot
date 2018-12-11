@@ -16,6 +16,8 @@ var bot = new Discord.Client({
    autorun: true
 });
 
+bot.login(process.env.BOT_TOKEN);
+
 // Get HTML
 var http = require('http');
 var request = require("request");
