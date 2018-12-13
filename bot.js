@@ -205,6 +205,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						});	 
 				});
 				break;
+			
+				case 'REEEE':
+				bot.sendMessage({
+						to: channelID,
+						message: "REEEE \n" + "https://www.youtube.com/watch?v=ifDs46V40sk" 
+					});
+				break;
          }
      }
 });
