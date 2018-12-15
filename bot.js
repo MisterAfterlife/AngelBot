@@ -53,7 +53,7 @@ bot.on('ready', function (evt) {
 
 var ddLoop = setTimeout(function tick(){
 	logger.info("Tick");
-	ddLoop = setTimeout(tick, 2000); 
+	ddLoop = setTimeout(tick, 600000); 
 }, 2000);
 
 function generateCommandStr()
