@@ -28,6 +28,10 @@ var parser = new xml2js.Parser();
 // Youtube related
 var ytlist = require('youtube-playlist');
 
+
+// DailyD Timer
+var 
+
 // Externalized
 var ascii = require('./ascii.js');
 var comfy = require('./comfy.js');
@@ -57,6 +61,14 @@ function generateCommandStr()
 	});
 	
 	return str;
+}
+
+function TimerSendMessage(user, userID, channelID, message, evt)
+{
+	bot.sendMessage({
+		to: channelID,
+		message: "I am a test <:XD:520357379670540298>"
+	});
 }
 
 // Main message bot
@@ -125,7 +137,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						});
 				});
 				break;	
-				
 			case "sbclip":		
 				bot.sendMessage({
 				to: channelID,
@@ -212,6 +223,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						message: "REEEE \n" + "https://www.youtube.com/watch?v=ifDs46V40sk" 
 					});
 				break;
+			
+				case 'SetTimer':
+					setTimeout(TimerSendMessage,2000);
+				break;
+			
          }
      }
 });
