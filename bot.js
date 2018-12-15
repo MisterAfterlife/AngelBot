@@ -51,6 +51,11 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')'); */
 });
 
+var ddLoop = setTimeout(function tick(){
+	logger.info("Tick);
+	ddLoop = setTimeout(tick, 2000); 
+}, 2000);
+
 function generateCommandStr()
 {
 	var str = "Here are the current commands for AngelBot...\n";
@@ -223,12 +228,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					});
 				break;
 			
-				case 'SetTimer':
+				case 'SetChannelToDD':	
 					bot.sendMessage({
 						to: channelID,
-						message: "Timer test..." 
+						message: "This channel is set to get getting Daily Dinkster Updates <:XD:520357379670540298>" 
 					});
-					setTimeout(TimerSendMessage,2000);
 				break;
 			
          }
