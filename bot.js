@@ -225,6 +225,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				break;
 			
 				case 'SetTimer':
+					bot.sendMessage({
+						to: channelID,
+						message: "Timer test..." 
+					});
 					setTimeout(TimerSendMessage,2000);
 				break;
 			
