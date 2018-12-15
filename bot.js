@@ -30,7 +30,6 @@ var ytlist = require('youtube-playlist');
 
 
 // DailyD Timer
-var 
 
 // Externalized
 var ascii = require('./ascii.js');
