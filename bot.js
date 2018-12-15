@@ -52,7 +52,7 @@ bot.on('ready', function (evt) {
 });
 
 var ddLoop = setTimeout(function tick(){
-	logger.info("Tick);
+	logger.info("Tick");
 	ddLoop = setTimeout(tick, 2000); 
 }, 2000);
 
