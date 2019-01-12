@@ -267,7 +267,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 									message: user + " rolled a " + (Math.floor(Math.random() * 2) + 1)
 								});					
 								break;
-							case "d1"
+							case "d1":
 								bot.sendMessage({
 									to: channelID,
 									message: user + " rolled a 1. Are you dumb?"
