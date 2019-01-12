@@ -28,9 +28,6 @@ var parser = new xml2js.Parser();
 // Youtube related
 var ytlist = require('youtube-playlist');
 
-
-// DailyD Timer
-
 // Externalized
 var ascii = require('./ascii.js');
 var comfy = require('./comfy.js');
@@ -50,11 +47,6 @@ bot.on('ready', function (evt) {
     /*logger.info('Logged in as: ');
     logger.info(bot.username + ' - (' + bot.id + ')'); */
 });
-
-var ddLoop = setTimeout(function tick(){
-	logger.info("Tick");
-	ddLoop = setTimeout(tick, 600000); 
-}, 2000);
 
 function generateCommandStr()
 {
@@ -82,8 +74,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.substring(0, 1) == '!') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
+		var rollNum = '';
 		
-        args = args.splice(1);
+		if(args.length > 1)
+		{
+			rollNum = args[1];	
+		}	
+		
+        //args = args.splice(1);
 		
         switch(cmd) {
 			case 'commands':
@@ -117,13 +115,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 });
 				break;
 				
-			case "dailyd":
+			case "dailyd":			
 				bot.sendMessage({
 				to: channelID,
 				message: "Grabbing current Dinkster Day"
 				});	
 				
 				var linkXML = "https://www.youtube.com/feeds/videos.xml?channel_id=UCYu1rWyr0TxTnHo99oW7ddA";
+				
 				request({
 					uri: linkXML,
 				}, function(err, resp, body){
@@ -131,7 +130,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						parser.parseString(body, function(err, result){
 							var link = "https://www.youtube.com/watch?v=";
 							var jsonContent = result['feed']['entry'][0]['yt:videoId'];
-							
+
 							link += jsonContent;
 							console.log(link);	
 							bot.sendMessage({
@@ -227,12 +226,84 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						message: "REEEE \n" + "https://www.youtube.com/watch?v=ifDs46V40sk" 
 					});
 				break;
-			
-				case 'SetChannelToDD':	
-					bot.sendMessage({
+				
+				case 'Roll':				
+					if(rollNum)
+					{
+						switch(rollNum)
+						{
+							case "d100":
+								bot.sendMessage({
+									to: channelID,
+									message: user + " rolled a " + (Math.floor(Math.random() * 100) + 1)
+								});
+								break;
+							case "d20":
+								bot.sendMessage({
+									to: channelID,
+									message: user + " rolled a " + (Math.floor(Math.random() * 20) + 1)
+								});
+								break;
+							case "d10":
+								bot.sendMessage({
+									to: channelID,
+									message: user + " rolled a " + (Math.floor(Math.random() * 10) + 1)
+								});
+								break;
+							case "d8":
+								bot.sendMessage({
+									to: channelID,
+									message: user + " rolled a " + (Math.floor(Math.random() * 8) + 1)
+								});
+								break;
+							case "d6":
+								bot.sendMessage({
+									to: channelID,
+									message: user + " rolled a " + (Math.floor(Math.random() * 6) + 1)
+								});
+								break;
+							case "d4":
+								bot.sendMessage({
+									to: channelID,
+									message: user + " rolled a " + (Math.floor(Math.random() * 4) + 1)
+								});						
+								break;
+							case "d2":
+								bot.sendMessage({
+									to: channelID,
+									message: user + " rolled a " + (Math.floor(Math.random() * 2) + 1)
+								});					
+								break;
+							case "d1"
+								bot.sendMessage({
+									to: channelID,
+									message: user + " rolled a 1. Are you dumb?";
+								});					
+								break;								
+							default:
+								bot.sendMessage({
+									to: channelID,
+										message: "Sorry, that dice is not available with this command..."
+									});
+								break;
+						}				
+					}
+					else 
+					{
+						bot.sendMessage({
+							to: channelID,
+								message: "You need to add a dice value to the command. Try adding d100, d20, d10, etc. to the !Roll command."
+							});
+					}
+					
+				break;
+				
+				
+				bot.sendMessage({
 						to: channelID,
-						message: "This channel is set to get getting Daily Dinkster Updates <:XD:520357379670540298>" 
+						message: "OMEGALUL" 
 					});
+
 				break;
 			
          }
