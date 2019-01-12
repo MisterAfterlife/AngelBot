@@ -270,7 +270,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							case "d1"
 								bot.sendMessage({
 									to: channelID,
-									message: user + " rolled a 1. Are you dumb?";
+									message: user + " rolled a 1. Are you dumb?"
 								});					
 								break;								
 							default:
