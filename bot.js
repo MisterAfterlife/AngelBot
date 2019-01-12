@@ -39,7 +39,8 @@ var currCommands = [
 	"dailyd",
 	"sbclip",
 	"jtclip",
-	"cursed"
+	"cursed",
+	"Roll d(100, 20, 10, 8, 6, 4 or 2)"
 ];
 
 bot.on('ready', function (evt) {
@@ -57,14 +58,6 @@ function generateCommandStr()
 	});
 	
 	return str;
-}
-
-function TimerSendMessage(user, userID, channelID, message, evt)
-{
-	bot.sendMessage({
-		to: channelID,
-		message: "I am a test <:XD:520357379670540298>"
-	});
 }
 
 // Main message bot
@@ -296,16 +289,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 							});
 					}
 					
-				break;
-				
-				
-				bot.sendMessage({
-						to: channelID,
-						message: "OMEGALUL" 
-					});
-
-				break;
-			
+				break;			
          }
      }
 });
