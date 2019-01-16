@@ -40,7 +40,8 @@ var currCommands = [
 	"sbclip",
 	"jtclip",
 	"cursed",
-	"Roll d(100, 20, 10, 8, 6, 4 or 2)"
+	"roll d(100, 20, 10, 8, 6, 4 or 2)",
+	"day15"
 ];
 
 bot.on('ready', function (evt) {
@@ -48,6 +49,17 @@ bot.on('ready', function (evt) {
     /*logger.info('Logged in as: ');
     logger.info(bot.username + ' - (' + bot.id + ')'); */
 });
+
+// Day 15 
+var day15 = [
+	"https://www.youtube.com/watch?v=bUvZRjl2VqU",
+	"https://i.imgur.com/F7HP2Dd.png            ",
+	"https://www.youtube.com/watch?v=bUvZRjl2VqU",
+	"https://www.youtube.com/watch?v=FlBWzgAK0D8",
+	"https://i.imgur.com/F7HP2Dd.png            ",
+	"https://www.youtube.com/watch?v=bUvZRjl2VqU",
+	"https://i.imgur.com/F7HP2Dd.png            ",
+];
 
 function generateCommandStr()
 {
@@ -67,13 +79,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.substring(0, 1) == '!') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
-		var rollNum = '';
-		
-		if(args.length > 1)
-		{
-			rollNum = args[1];	
-		}	
-		
         //args = args.splice(1);
 		
         switch(cmd) {
@@ -133,6 +138,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						});
 				});
 				break;	
+
 			case "sbclip":		
 				bot.sendMessage({
 				to: channelID,
@@ -165,7 +171,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						message: res.data.playlist[Math.floor(Math.random() * (res.data.playlist.length))]
 						});	 
 				});
-				break;	
+			break;	
 				
 			case "jtclip":
 				bot.sendMessage({
@@ -183,7 +189,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						});	 
 				});		
 				break;
-			
+				
 			case "cursed":
 				bot.sendMessage({
 					to: channelID,
@@ -213,83 +219,185 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				});
 				break;
 			
-				case 'REEEE':
-				bot.sendMessage({
-						to: channelID,
-						message: "REEEE \n" + "https://www.youtube.com/watch?v=ifDs46V40sk" 
-					});
-				break;
+			case 'REEEE':
+			bot.sendMessage({
+					to: channelID,
+					message: "REEEE \n" + "https://www.youtube.com/watch?v=ifDs46V40sk" 
+				});
+			break;
 				
-				case 'Roll':				
-					if(rollNum)
+				
+			case 'roll':
+			case 'Roll':
+			case 'r':
+				var rollNum = '';
+
+				if(args.length > 1)
+				{
+					rollNum = args[1];	
+				}	
+				
+				if(rollNum)
+				{
+					switch(rollNum)
 					{
-						switch(rollNum)
-						{
-							case "d100":
-								bot.sendMessage({
-									to: channelID,
-									message: user + " rolled a " + (Math.floor(Math.random() * 100) + 1)
+						case "d100":
+							bot.sendMessage({
+								to: channelID,
+								message: user + " rolled a " + (Math.floor(Math.random() * 100) + 1)
+							});
+							break;
+						case "d20":
+							bot.sendMessage({
+								to: channelID,
+								message: user + " rolled a " + (Math.floor(Math.random() * 20) + 1)
+							});
+							break;
+						case "d12":
+							bot.sendMessage({
+								to: channelID,
+								message: user + " rolled a " + (Math.floor(Math.random() * 12) + 1)
+							});
+							break;
+						case "d10":
+							bot.sendMessage({
+								to: channelID,
+								message: user + " rolled a " + (Math.floor(Math.random() * 10) + 1)
+							});
+							break;
+						case "d8":
+							bot.sendMessage({
+								to: channelID,
+								message: user + " rolled a " + (Math.floor(Math.random() * 8) + 1)
+							});
+							break;
+						case "d6":
+							bot.sendMessage({
+								to: channelID,
+								message: user + " rolled a " + (Math.floor(Math.random() * 6) + 1)
+							});
+							break;
+						case "d4":
+							bot.sendMessage({
+								to: channelID,
+								message: user + " rolled a " + (Math.floor(Math.random() * 4) + 1)
+							});						
+							break;
+						case "d2":
+							bot.sendMessage({
+								to: channelID,
+								message: user + " rolled a " + (Math.floor(Math.random() * 2) + 1)
+							});					
+							break;
+						case "d1":
+							bot.sendMessage({
+								to: channelID,
+								message: user + " rolled a 1. Are you dumb?"
+							});					
+							break;								
+						default:
+							bot.sendMessage({
+								to: channelID,
+									message: "Sorry, that dice is not available with this command..."
 								});
-								break;
-							case "d20":
-								bot.sendMessage({
-									to: channelID,
-									message: user + " rolled a " + (Math.floor(Math.random() * 20) + 1)
-								});
-								break;
-							case "d10":
-								bot.sendMessage({
-									to: channelID,
-									message: user + " rolled a " + (Math.floor(Math.random() * 10) + 1)
-								});
-								break;
-							case "d8":
-								bot.sendMessage({
-									to: channelID,
-									message: user + " rolled a " + (Math.floor(Math.random() * 8) + 1)
-								});
-								break;
-							case "d6":
-								bot.sendMessage({
-									to: channelID,
-									message: user + " rolled a " + (Math.floor(Math.random() * 6) + 1)
-								});
-								break;
-							case "d4":
-								bot.sendMessage({
-									to: channelID,
-									message: user + " rolled a " + (Math.floor(Math.random() * 4) + 1)
-								});						
-								break;
-							case "d2":
-								bot.sendMessage({
-									to: channelID,
-									message: user + " rolled a " + (Math.floor(Math.random() * 2) + 1)
-								});					
-								break;
-							case "d1":
-								bot.sendMessage({
-									to: channelID,
-									message: user + " rolled a 1. Are you dumb?"
-								});					
-								break;								
-							default:
-								bot.sendMessage({
-									to: channelID,
-										message: "Sorry, that dice is not available with this command..."
-									});
-								break;
-						}				
-					}
-					else 
+							break;
+					}				
+				}
+				else 
+				{
+					bot.sendMessage({
+						to: channelID,
+							message: "You need to add a dice value to the command. Try adding d100, d20, d10, etc. to the !Roll command."
+						});
+				}
+				
+			break;		
+				
+			case 'day15':
+			var d = new Date();
+			
+			if(d.getDate() == 15)
+			{			
+				bot.sendMessage({
+					to: channelID,
+					message: "DAY 15; GIVE IT UP FOR DAY 15!!! \n" + day15[Math.floor(Math.random() * (day15.length))]
+				});
+			}
+			else 
+			{
+				bot.sendMessage({
+					to: channelID,
+					message: "Is it day 15? \n" + "https://www.youtube.com/watch?v=gvdf5n-zI14" 
+				});	
+			}
+				
+			break;
+			
+			
+			case 'spam':
+				var vType = '';
+				var vCount = 0;
+
+				if(args.length > 2)
+				{
+					vType = args[1];
+					vCount = args[2];
+				}	
+				else 
+				{
+					
+					
+				}
+				
+				if(vCount)
+				{
+					if(isNaN(vCount))
 					{
 						bot.sendMessage({
 							to: channelID,
-								message: "You need to add a dice value to the command. Try adding d100, d20, d10, etc. to the !Roll command."
-							});
+							message: "The count value you provided is not a valid number"
+							});	
+						return;
 					}
-					
-				break;			
-         }
+				}
+				
+				var count = parseInt(vCount, 10);
+				
+				if(count <= 0 || count >= 100)
+				{
+					bot.sendMessage({
+							to: channelID,
+							message: "I could not process this command. Your value is either 0, negative or a value higher than the max (100)"
+							});	
+						return;
+				}
+				
+				//logger.info(emoteType + 'is the emote id');
+				var msg = "";
+				
+				var i;
+				for(i = 0; i < count; i++)
+				{
+					msg += ' ' + vType;
+				}
+				
+				logger.info(msg.length + 'is the text length');
+				
+				if(msg.length > 2000)
+				{
+					bot.sendMessage({
+						to: channelID,
+						message: "I could not process this command because your message exceeded the text limit."
+					});			
+				}
+				else 
+				{
+					bot.sendMessage({
+						to: channelID,
+						message: msg
+					});
+				}	
+			break;
+		}
      }
 });
